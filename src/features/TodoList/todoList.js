@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import TodoItem from "../TodoItem/todoItem";
 
-const TodoList = () => {
+const TodoList = (props) => {
   let tasksData = [
     "Пройти стажировку в Онли",
     "Побриться",
@@ -9,6 +9,8 @@ const TodoList = () => {
     "Не забыть забрать сына из садика",
     "Купить сыр",
   ];
+
+  const setModalState = props.setModalState;
 
   const [todo, setTodo] = useState(
     tasksData.map((task) => {
@@ -34,6 +36,7 @@ const TodoList = () => {
         ))}
       </ul>
       <button
+        onClick={() => setModalState(true)}
         className="button todo__button--add"
         aria-label="Добавить задачу"
       ></button>

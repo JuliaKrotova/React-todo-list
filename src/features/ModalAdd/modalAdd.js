@@ -1,8 +1,13 @@
 import React, { useState } from "react";
 
-const ModalAdd = () => {
+const ModalAdd = (props) => {
+  let a = "";
+  if (props.modalState) {
+    a = "bbb";
+  }
   return (
     <section className="modal modal--add">
+      {a}
       <h2 className="visually-hidden">Форма добавления задачи</h2>
       <p className="todo__empty hidden">Список задач пуст</p>
       <div className="container modal__wrapper">
