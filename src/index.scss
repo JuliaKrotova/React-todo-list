@@ -1,0 +1,116 @@
+@import "./components";
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-width: 320px;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  line-height: 20px;
+  font-family: Gilroy, arial, sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  letter-spacing: 0.01em;
+  color: #000000;
+  background-color: #ffffff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+*::after,
+*::before {
+  box-sizing: inherit;
+}
+
+main {
+  position: relative;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+ul,
+li {
+  font-size: inherit;
+  font-weight: inherit;
+  padding: 0;
+  margin: 0;
+}
+
+button,
+select {
+  cursor: pointer;
+}
+
+svg path {
+  fill: inherit;
+}
+
+.hidden {
+  display: none;
+}
+
+.visually-hidden {
+  @include visually-hidden;
+}
+
+.container {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+  padding-left: 40px;
+  padding-right: 40px;
+
+  @media (min-width: $desktop-width) {
+    max-width: 1280px;
+  }
+}
+
+.button {
+  @include button;
+}
+
+.button--current,
+.button:focus,
+.button:hover {
+  background-color: $blue;
+  color: $white;
+}
+
+.button--current:hover,
+.button--current:focus {
+  opacity: 0.6;
+}
+
+.modal {
+  @include modal;
+
+  @media (min-width: $desktop-width) {
+    max-width: 30.625rem;
+    left: 50%;
+    margin-left: -15.3125rem;
+    min-height: 0;
+    border-radius: 40px;
+  }
+
+  &__wrapper {
+    padding-top: 2.625rem;
+    padding-bottom: 2.625rem;
+  }
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateY(-8.25rem);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}

@@ -1,0 +1,100 @@
+@mixin reset {
+  margin: 0;
+  padding: 0;
+}
+
+@mixin list-reset {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+@mixin button-reset {
+  padding: 0;
+  border: none;
+  font: inherit;
+  color: inherit;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+@mixin link-reset {
+  text-decoration: none;
+  color: inherit;
+}
+
+@mixin input-reset {
+  padding: 0;
+  border: none;
+  font: inherit;
+  color: inherit;
+  background-color: transparent;
+}
+
+@mixin visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  word-wrap: normal;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+@mixin visually-visible {
+  position: static;
+  width: auto;
+  height: auto;
+  margin: 0;
+  clip: unset;
+  clip-path: none;
+  white-space: normal;
+  overflow: visible;
+}
+
+@mixin pseudo($width, $height) {
+  position: absolute;
+  content: "";
+  width: $width;
+  height: $height;
+}
+
+@mixin button(
+  $border-radius: 0.25rem,
+  $background-color: $gray,
+  $opacity: 1,
+  $color: $black,
+  $font-size: 0.875rem,
+  $padding: 0.1875rem 0.9375rem 0.25rem
+) {
+  text-align: center;
+  white-space: nowrap;
+  border: none;
+  border-radius: $border-radius;
+  cursor: pointer;
+  background-color: $background-color;
+  transition: background-color 0.2s, color 0.2s;
+  outline: none;
+  opacity: $opacity;
+  color: $color;
+  font-size: $font-size;
+  line-height: 1.25rem;
+  padding: $padding;
+}
+
+@mixin modal {
+  display: none;
+  position: fixed;
+  top: 8.25rem;
+  left: 0;
+  right: 0;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.1);
+  border-radius: 40px 40px 0 0;
+  background-color: #ffffff;
+  z-index: 1;
+  min-height: 42.5rem;
+}
