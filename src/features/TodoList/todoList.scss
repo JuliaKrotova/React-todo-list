@@ -55,6 +55,10 @@
     background: #e85c5c no-repeat center;
   }
 
+  &__action.show {
+    display: block;
+  }
+
   &__button--add.button {
     @include button(
       $border-radius: 50%,
@@ -103,5 +107,13 @@
     &:focus::after {
       background-color: $white;
     }
+  }
+
+  &__empty {
+    display: none;
+  }
+
+  &__empty.show {
+    display: block;
   }
 }

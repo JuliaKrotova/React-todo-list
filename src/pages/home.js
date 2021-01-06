@@ -1,16 +1,15 @@
 import React, { useState } from "react";
 import TodoList from "../features/TodoList/todoList";
-import ModalAdd from "../features/ModalAdd/modalAdd";
 
-const Home = () => {
-  const [modalState, setModalState] = useState(false);
-
+const Home = (props) => {
   return (
     <>
       <main>
         <div className="container">
-          <TodoList setModalState={setModalState} />
-          <ModalAdd modalState={modalState} setModalState={setModalState} />
+          <TodoList
+            listState={props.listState}
+            setListState={props.setListState}
+          />
         </div>
       </main>
     </>

@@ -1,27 +1,39 @@
 import React, { useState } from "react";
 
 const ModalAdd = (props) => {
-  let a = "";
-  if (props.modalState) {
-    a = "bbb";
-  }
+  const [newTask, setNewTask] = useState("");
+
+  const addAndClose = (event) => {
+    event.preventDefault();
+    props.addTodo(newTask);
+    props.setListState("show");
+  };
+
   return (
-    <section className="modal modal--add">
-      {a}
+    <section
+      className={"modal modal--add" + (props.listState == "add" ? " show" : "")}
+    >
       <h2 className="visually-hidden">Форма добавления задачи</h2>
       <p className="todo__empty hidden">Список задач пуст</p>
       <div className="container modal__wrapper">
         <div className="form">
-          <form method="post" name="taskAdd">
+          <form method="post" name="taskAdd" onSubmit={addAndClose}>
             <div className="form__row">
               <textarea
+                onChange={(event) => {
+                  setNewTask(event.target.value);
+                }}
+                value={newTask}
                 name="taskArea"
                 placeholder="Введите текст задачи"
                 required
               ></textarea>
             </div>
             <div className="form__row form__row--buttons">
-              <button className="button form__button form__button--close">
+              <button
+                className="button form__button form__button--close"
+                onClick={() => props.setListState("show")}
+              >
                 Закрыть
               </button>
               <button

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import TodoItem from "../TodoItem/todoItem";
+import ModalAdd from "../ModalAdd/modalAdd";
 
 const TodoList = (props) => {
   let tasksData = [
@@ -10,7 +11,8 @@ const TodoList = (props) => {
     "Купить сыр",
   ];
 
-  const setModalState = props.setModalState;
+  const setListState = props.setListState;
+  const listState = props.listState;
 
   const [todo, setTodo] = useState(
     tasksData.map((task) => {
@@ -29,26 +31,30 @@ const TodoList = (props) => {
   return (
     <section className="todo">
       <h2 className="visually-hidden">Задачи</h2>
-      <p className="todo__empty hidden">Список задач пуст</p>
+      <p className={"todo__empty" + (todo.length == "0" ? " show" : "")}>
+        Список задач пуст
+      </p>
       <ul className="todo__list">
         {todo.map((item, index) => (
-          <TodoItem key={index} item={item} />
+          <TodoItem
+            index={index}
+            item={item}
+            listState={listState}
+            removeTodo={removeTodo}
+          />
         ))}
       </ul>
       <button
-        onClick={() => setModalState(true)}
+        onClick={() => setListState("add")}
         className="button todo__button--add"
         aria-label="Добавить задачу"
       ></button>
 
-      <div>
-        {todo.map((item, index) => (
-          <div key={index} onClick={() => removeTodo(index)}>
-            {item.title}
-          </div>
-        ))}
-        <button onClick={() => addTodo("новая таска")}>Add</button>
-      </div>
+      <ModalAdd
+        listState={listState}
+        setListState={setListState}
+        addTodo={addTodo}
+      />
     </section>
   );
 };
