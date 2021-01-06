@@ -6,7 +6,12 @@ const ModalAdd = (props) => {
   const addAndClose = (event) => {
     event.preventDefault();
     props.addTodo(newTask);
+    closeModal();
+  };
+
+  const closeModal = () => {
     props.setListState("show");
+    setNewTask("");
   };
 
   return (
@@ -31,8 +36,9 @@ const ModalAdd = (props) => {
             </div>
             <div className="form__row form__row--buttons">
               <button
+                type="button"
                 className="button form__button form__button--close"
-                onClick={() => props.setListState("show")}
+                onClick={closeModal}
               >
                 Закрыть
               </button>
