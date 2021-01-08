@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import TodoItem from "../TodoItem/todoItem";
 import ModalAdd from "../ModalAdd/modalAdd";
+import ModalEdit from "../ModalEdit/modalEdit";
 
 const TodoList = (props) => {
   let tasksData = [
@@ -10,6 +11,10 @@ const TodoList = (props) => {
     "Не забыть забрать сына из садика",
     "Купить сыр",
   ];
+
+  const [editedTask, setEditedTask] = useState("");
+
+  const [editedIndex, setEditedIndex] = useState("");
 
   const setListState = props.setListState;
   const listState = props.listState;
@@ -22,6 +27,13 @@ const TodoList = (props) => {
 
   const addTodo = (newTask) => {
     setTodo((prevState) => [...prevState, { value: newTask }]);
+  };
+
+  const editTodo = () => {
+    setTodo((prevState) => {
+      prevState[editedIndex].value = editedTask;
+      return prevState;
+    });
   };
 
   const removeTodo = (index) => {
@@ -37,10 +49,14 @@ const TodoList = (props) => {
       <ul className="todo__list">
         {todo.map((item, index) => (
           <TodoItem
+            key={index}
             index={index}
             item={item}
             listState={listState}
+            setListState={setListState}
             removeTodo={removeTodo}
+            setEditedIndex={setEditedIndex}
+            setEditedTask={setEditedTask}
           />
         ))}
       </ul>
@@ -54,6 +70,14 @@ const TodoList = (props) => {
         listState={listState}
         setListState={setListState}
         addTodo={addTodo}
+      />
+
+      <ModalEdit
+        listState={listState}
+        setListState={setListState}
+        editTodo={editTodo}
+        editedTask={editedTask}
+        setEditedTask={setEditedTask}
       />
     </section>
   );

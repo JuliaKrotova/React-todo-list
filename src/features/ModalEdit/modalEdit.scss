@@ -1,0 +1,9 @@
+.modal--edit.modal {
+  $root: &;
+
+  input {
+    min-height: 3.125rem;
+    height: 3.125rem;
+    padding: 0.875rem 1.25rem;
+  }
+}

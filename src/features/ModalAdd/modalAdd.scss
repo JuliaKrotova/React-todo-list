@@ -1,24 +1,6 @@
 .modal--add {
   $root: &;
 
-  &.show {
-    display: block;
-    animation: bounce 0.5s;
-  }
-
-  input,
-  textarea {
-    width: 100%;
-    min-height: 10rem;
-    border: 2px solid #e6e6e6;
-    border-radius: 10px;
-    padding: 1.25rem;
-    margin-bottom: 1.875rem;
-    outline: none;
-    color: #333333;
-    line-height: 1.375rem;
-  }
-
   textarea {
     min-height: 10rem;
 
@@ -26,26 +8,5 @@
       line-height: 1.375rem;
       color: #999999;
     }
-  }
-
-  input {
-    min-height: 3.125rem;
-    height: 3.125rem;
-    padding: 0.875rem 1.25rem;
-  }
-
-  .form__row {
-    display: flex;
-  }
-
-  .form__row--buttons {
-    display: flex;
-    justify-content: space-between;
-  }
-
-  .form__button {
-    max-width: 137px;
-    border-radius: 10px;
-    padding: 0.625rem 2.125rem;
   }
 }

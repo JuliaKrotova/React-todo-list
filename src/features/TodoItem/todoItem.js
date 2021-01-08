@@ -4,16 +4,35 @@ const TodoItem = (props) => {
   return (
     <li className="todo__item">
       <label className="todo__label">
-        <span className="todo__span">{props.item.value}</span>
+        <span
+          className="todo__span"
+          onClick={() => {
+            if (props.listState === "edit") {
+              props.setListState("editTask");
+              props.setEditedIndex(props.index);
+              props.setEditedTask(props.item.value);
+            }
+          }}
+        >
+          {props.item.value}
+        </span>
         <input type="checkbox" className="visually-hidden todo__check-input" />
         <span
           className={
-            "todo__checkbox" + (props.listState == "edit" ? " hidden" : "")
+            "todo__checkbox" +
+            (props.listState === "edit" || props.listState === "editTask"
+              ? " hidden"
+              : "")
           }
         ></span>
       </label>
       <button
-        className={"todo__action" + (props.listState == "edit" ? " show" : "")}
+        className={
+          "todo__action" +
+          (props.listState === "edit" || props.listState === "editTask"
+            ? " show"
+            : "")
+        }
         onClick={() => props.removeTodo(props.index)}
       ></button>
     </li>
