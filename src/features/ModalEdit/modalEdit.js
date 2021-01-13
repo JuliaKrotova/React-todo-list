@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 
 const ModalEdit = (props) => {
-  const editAndClose = (event) => {
+  function editAndClose(event) {
     event.preventDefault();
     props.editTodo();
     closeModalEdit();
-  };
+  }
 
   const closeModalEdit = () => {
     props.setListState("edit");

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import TodoList from "../features/TodoList/todoList";
 
 const Home = (props) => {

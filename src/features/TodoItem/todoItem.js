@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 const TodoItem = (props) => {
   return (
@@ -33,7 +33,7 @@ const TodoItem = (props) => {
             ? " show"
             : "")
         }
-        onClick={() => props.removeTodo(props.index)}
+        onClick={() => props.removeTodo(props.item)}
       ></button>
     </li>
   );

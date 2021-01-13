@@ -4,6 +4,9 @@ import ModalAdd from "../ModalAdd/modalAdd";
 import ModalEdit from "../ModalEdit/modalEdit";
 
 const TodoList = (props) => {
+  const listState = props.listState;
+  const setListState = props.setListState;
+
   let tasksData = [
     "Пройти стажировку в Онли",
     "Побриться",
@@ -15,9 +18,6 @@ const TodoList = (props) => {
   const [editedTask, setEditedTask] = useState("");
 
   const [editedIndex, setEditedIndex] = useState("");
-
-  const setListState = props.setListState;
-  const listState = props.listState;
 
   const [todo, setTodo] = useState(
     tasksData.map((task) => {
@@ -36,14 +36,14 @@ const TodoList = (props) => {
     });
   };
 
-  const removeTodo = (index) => {
-    setTodo(todo.filter((item, i) => i !== index));
+  const removeTodo = (itemToRemove) => {
+    setTodo(todo.filter((item) => item !== itemToRemove));
   };
 
   return (
     <section className="todo">
       <h2 className="visually-hidden">Задачи</h2>
-      <p className={"todo__empty" + (todo.length === "0" ? " show" : "")}>
+      <p className={"todo__empty" + (todo.length === 0 ? " show" : "")}>
         Список задач пуст
       </p>
       <ul className="todo__list">
