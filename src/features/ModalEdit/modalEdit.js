@@ -15,7 +15,7 @@ const ModalEdit = (props) => {
   return (
     <section
       className={
-        "modal modal--edit" + (props.listState == "editTask" ? " show" : "")
+        "modal modal--edit" + (props.listState === "editTask" ? " show" : "")
       }
     >
       <h2 className="visually-hidden">Форма редактирования задачи</h2>

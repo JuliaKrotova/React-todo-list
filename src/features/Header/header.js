@@ -8,7 +8,7 @@ const Header = (props) => {
         <button
           className={
             "button header__button-edit" +
-            (props.listState == "edit" ? " hidden" : "")
+            (props.listState === "edit" ? " hidden" : "")
           }
           onClick={() => props.setListState("edit")}
         >
@@ -17,7 +17,7 @@ const Header = (props) => {
         <button
           className={
             "button header__button-cancel" +
-            (props.listState == "edit" ? " show" : "")
+            (props.listState === "edit" ? " show" : "")
           }
           onClick={() => props.setListState("show")}
         >

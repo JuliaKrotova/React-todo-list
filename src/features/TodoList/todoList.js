@@ -43,7 +43,7 @@ const TodoList = (props) => {
   return (
     <section className="todo">
       <h2 className="visually-hidden">Задачи</h2>
-      <p className={"todo__empty" + (todo.length == "0" ? " show" : "")}>
+      <p className={"todo__empty" + (todo.length === "0" ? " show" : "")}>
         Список задач пуст
       </p>
       <ul className="todo__list">

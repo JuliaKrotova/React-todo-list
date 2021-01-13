@@ -3,25 +3,27 @@ import React, { useState } from "react";
 const ModalAdd = (props) => {
   const [newTask, setNewTask] = useState("");
 
-  const addAndClose = (event) => {
+  const addTodoAndClose = (event) => {
     event.preventDefault();
     props.addTodo(newTask);
-    closeModal();
+    closeModalAdd();
   };
 
-  const closeModal = () => {
+  const closeModalAdd = () => {
     props.setListState("show");
     setNewTask("");
   };
 
   return (
     <section
-      className={"modal modal--add" + (props.listState == "add" ? " show" : "")}
+      className={
+        "modal modal--add" + (props.listState === "add" ? " show" : "")
+      }
     >
       <h2 className="visually-hidden">Форма добавления задачи</h2>
       <div className="container modal__wrapper">
         <div className="form">
-          <form method="post" name="taskAdd" onSubmit={addAndClose}>
+          <form method="post" name="taskAdd" onSubmit={addTodoAndClose}>
             <div className="form__row">
               <textarea
                 onChange={(event) => {
@@ -37,7 +39,7 @@ const ModalAdd = (props) => {
               <button
                 type="button"
                 className="button form__button form__button--close"
-                onClick={closeModal}
+                onClick={closeModalAdd}
               >
                 Закрыть
               </button>
