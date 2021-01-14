@@ -10,11 +10,11 @@ const TodoItem = (props) => {
             if (props.listState === "edit") {
               props.setListState("editTask");
               props.setEditedIndex(props.index);
-              props.setEditedTask(props.item.value);
+              props.setEditedTask(props.item);
             }
           }}
         >
-          {props.item.value}
+          {props.item}
         </span>
         <input type="checkbox" className="visually-hidden todo__check-input" />
         <span

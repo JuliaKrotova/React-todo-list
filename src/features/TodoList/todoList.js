@@ -3,10 +3,7 @@ import TodoItem from "../TodoItem/todoItem";
 import ModalAdd from "../ModalAdd/modalAdd";
 import ModalEdit from "../ModalEdit/modalEdit";
 
-const TodoList = (props) => {
-  const listState = props.listState;
-  const setListState = props.setListState;
-
+const TodoList = (listState, setListState) => {
   let tasksData = [
     "Пройти стажировку в Онли",
     "Побриться",
@@ -15,23 +12,19 @@ const TodoList = (props) => {
     "Купить сыр",
   ];
 
+  const [todo, setTodo] = useState(tasksData);
+
   const [editedTask, setEditedTask] = useState("");
 
   const [editedIndex, setEditedIndex] = useState("");
 
-  const [todo, setTodo] = useState(
-    tasksData.map((task) => {
-      return { value: task };
-    })
-  );
-
   const addTodo = (newTask) => {
-    setTodo((prevState) => [...prevState, { value: newTask }]);
+    setTodo((prevState) => [...prevState, newTask]);
   };
 
   const editTodo = () => {
     setTodo((prevState) => {
-      prevState[editedIndex].value = editedTask;
+      prevState[editedIndex] = editedTask;
       return prevState;
     });
   };

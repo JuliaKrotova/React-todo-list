@@ -1,6 +1,6 @@
 import React from "react";
 
-const Header = (props) => {
+const Header = (listState, setListState) => {
   return (
     <header className="header">
       <div className="container header__wrapper">
@@ -8,18 +8,18 @@ const Header = (props) => {
         <button
           className={
             "button header__button-edit" +
-            (props.listState === "edit" ? " hidden" : "")
+            (listState === "edit" ? " hidden" : "")
           }
-          onClick={() => props.setListState("edit")}
+          onClick={() => setListState("edit")}
         >
           Править
         </button>
         <button
           className={
             "button header__button-cancel" +
-            (props.listState === "edit" ? " show" : "")
+            (listState === "edit" ? " show" : "")
           }
-          onClick={() => props.setListState("show")}
+          onClick={() => setListState("show")}
         >
           Отменить
         </button>
