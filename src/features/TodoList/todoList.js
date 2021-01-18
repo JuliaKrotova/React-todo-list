@@ -1,55 +1,47 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
 import TodoItem from "../TodoItem/todoItem";
 import ModalAdd from "../ModalAdd/modalAdd";
 import ModalEdit from "../ModalEdit/modalEdit";
+import { addTodo, removeTodo, editTodo } from "../TodoList/TodoActions";
 
-const TodoList = (listState, setListState) => {
-  let tasksData = [
-    "Пройти стажировку в Онли",
-    "Побриться",
-    "Купить молоко",
-    "Не забыть забрать сына из садика",
-    "Купить сыр",
-  ];
+const mapStateToProps = ({ todos }) => ({ ...todos });
 
-  const [todo, setTodo] = useState(tasksData);
+const mapDispatchToProps = {
+  addTodo,
+  editTodo,
+  removeTodo,
+};
 
+const TodoList = ({
+  todos,
+  addTodo,
+  removeTodo,
+  editTodo,
+  listState,
+  setListState,
+}) => {
   const [editedTask, setEditedTask] = useState("");
 
-  const [editedIndex, setEditedIndex] = useState("");
-
-  const addTodo = (newTask) => {
-    setTodo((prevState) => [...prevState, newTask]);
-  };
-
-  const editTodo = () => {
-    setTodo((prevState) => {
-      prevState[editedIndex] = editedTask;
-      return prevState;
-    });
-  };
-
-  const removeTodo = (itemToRemove) => {
-    setTodo(todo.filter((item) => item !== itemToRemove));
-  };
+  const [editedId, setEditedId] = useState("");
 
   return (
     <section className="todo">
       <h2 className="visually-hidden">Задачи</h2>
-      <p className={"todo__empty" + (todo.length === 0 ? " show" : "")}>
+      <p className={"todo__empty" + (todos.length === 0 ? " show" : "")}>
         Список задач пуст
       </p>
       <ul className="todo__list">
-        {todo.map((item, index) => (
+        {todos.map((item, index) => (
           <TodoItem
             key={index}
-            index={index}
             item={item}
             listState={listState}
+            editedTask={editedTask}
+            setEditedTask={setEditedTask}
+            setEditedId={setEditedId}
             setListState={setListState}
             removeTodo={removeTodo}
-            setEditedIndex={setEditedIndex}
-            setEditedTask={setEditedTask}
           />
         ))}
       </ul>
@@ -70,10 +62,11 @@ const TodoList = (listState, setListState) => {
         setListState={setListState}
         editTodo={editTodo}
         editedTask={editedTask}
+        editedId={editedId}
         setEditedTask={setEditedTask}
       />
     </section>
   );
 };
 
-export default TodoList;
+export default connect(mapStateToProps, mapDispatchToProps)(TodoList);

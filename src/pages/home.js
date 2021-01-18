@@ -1,7 +1,7 @@
 import React from "react";
 import TodoList from "../features/TodoList/todoList";
 
-const Home = (listState, setListState) => {
+const Home = ({ listState, setListState }) => {
   return (
     <>
       <main>

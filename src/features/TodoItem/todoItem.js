@@ -9,12 +9,12 @@ const TodoItem = (props) => {
           onClick={() => {
             if (props.listState === "edit") {
               props.setListState("editTask");
-              props.setEditedIndex(props.index);
-              props.setEditedTask(props.item);
+              props.setEditedId(props.item.id);
+              props.setEditedTask(props.item.title);
             }
           }}
         >
-          {props.item}
+          {props.item.title}
         </span>
         <input type="checkbox" className="visually-hidden todo__check-input" />
         <span
@@ -33,7 +33,7 @@ const TodoItem = (props) => {
             ? " show"
             : "")
         }
-        onClick={() => props.removeTodo(props.item)}
+        onClick={() => props.removeTodo(props.item.id)}
       ></button>
     </li>
   );

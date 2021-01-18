@@ -1,6 +1,6 @@
 import React from "react";
 
-const Header = (listState, setListState) => {
+const Header = ({ listState, setListState }) => {
   return (
     <header className="header">
       <div className="container header__wrapper">

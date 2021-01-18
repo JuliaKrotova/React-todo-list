@@ -3,7 +3,7 @@ import React from "react";
 const ModalEdit = (props) => {
   function editAndClose(event) {
     event.preventDefault();
-    props.editTodo();
+    props.editTodo(props.editedId, props.editedTask);
     closeModalEdit();
   }
 
