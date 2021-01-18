@@ -1,21 +1,30 @@
 import React from "react";
+import { connect } from "react-redux";
+import { editTodo } from "../TodoList/TodoActions";
 
-const ModalEdit = (props) => {
+const ModalEdit = ({
+  listState,
+  setListState,
+  editedTask,
+  editedId,
+  setEditedTask,
+  editTodo,
+}) => {
   function editAndClose(event) {
     event.preventDefault();
-    props.editTodo(props.editedId, props.editedTask);
+    editTodo(editedId, editedTask);
     closeModalEdit();
   }
 
   const closeModalEdit = () => {
-    props.setListState("edit");
-    props.setEditedTask("");
+    setListState("edit");
+    setEditedTask("");
   };
 
   return (
     <section
       className={
-        "modal modal--edit" + (props.listState === "editTask" ? " show" : "")
+        "modal modal--edit" + (listState === "editTask" ? " show" : "")
       }
     >
       <h2 className="visually-hidden">Форма редактирования задачи</h2>
@@ -27,9 +36,9 @@ const ModalEdit = (props) => {
                 type="text"
                 name="taskInput"
                 onChange={(event) => {
-                  props.setEditedTask(event.target.value);
+                  setEditedTask(event.target.value);
                 }}
-                value={props.editedTask}
+                value={editedTask}
                 required
               ></input>
             </div>
@@ -55,4 +64,10 @@ const ModalEdit = (props) => {
   );
 };
 
-export default ModalEdit;
+const mapStateToProps = ({ todos }) => ({ ...todos });
+
+const mapDispatchToProps = {
+  editTodo,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ModalEdit);

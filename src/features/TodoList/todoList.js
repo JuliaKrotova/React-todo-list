@@ -3,24 +3,8 @@ import { connect } from "react-redux";
 import TodoItem from "../TodoItem/todoItem";
 import ModalAdd from "../ModalAdd/modalAdd";
 import ModalEdit from "../ModalEdit/modalEdit";
-import { addTodo, removeTodo, editTodo } from "../TodoList/TodoActions";
 
-const mapStateToProps = ({ todos }) => ({ ...todos });
-
-const mapDispatchToProps = {
-  addTodo,
-  editTodo,
-  removeTodo,
-};
-
-const TodoList = ({
-  todos,
-  addTodo,
-  removeTodo,
-  editTodo,
-  listState,
-  setListState,
-}) => {
+const TodoList = ({ todos, removeTodo, listState, setListState }) => {
   const [editedTask, setEditedTask] = useState("");
 
   const [editedId, setEditedId] = useState("");
@@ -32,16 +16,14 @@ const TodoList = ({
         Список задач пуст
       </p>
       <ul className="todo__list">
-        {todos.map((item, index) => (
+        {todos.map((item) => (
           <TodoItem
-            key={index}
+            key={item.id}
             item={item}
             listState={listState}
-            editedTask={editedTask}
+            setListState={setListState}
             setEditedTask={setEditedTask}
             setEditedId={setEditedId}
-            setListState={setListState}
-            removeTodo={removeTodo}
           />
         ))}
       </ul>
@@ -51,16 +33,11 @@ const TodoList = ({
         aria-label="Добавить задачу"
       ></button>
 
-      <ModalAdd
-        listState={listState}
-        setListState={setListState}
-        addTodo={addTodo}
-      />
+      <ModalAdd listState={listState} setListState={setListState} />
 
       <ModalEdit
         listState={listState}
         setListState={setListState}
-        editTodo={editTodo}
         editedTask={editedTask}
         editedId={editedId}
         setEditedTask={setEditedTask}
@@ -69,4 +46,6 @@ const TodoList = ({
   );
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(TodoList);
+const mapStateToProps = ({ todos }) => ({ ...todos });
+
+export default connect(mapStateToProps)(TodoList);

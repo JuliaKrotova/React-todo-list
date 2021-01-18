@@ -1,24 +1,24 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
+import { addTodo } from "../TodoList/TodoActions";
 
-const ModalAdd = (props) => {
+const ModalAdd = ({ listState, setListState, addTodo }) => {
   const [newTask, setNewTask] = useState("");
 
   const addTodoAndClose = (event) => {
     event.preventDefault();
-    props.addTodo(newTask);
+    addTodo(newTask);
     closeModalAdd();
   };
 
   const closeModalAdd = () => {
-    props.setListState("show");
+    setListState("show");
     setNewTask("");
   };
 
   return (
     <section
-      className={
-        "modal modal--add" + (props.listState === "add" ? " show" : "")
-      }
+      className={"modal modal--add" + (listState === "add" ? " show" : "")}
     >
       <h2 className="visually-hidden">Форма добавления задачи</h2>
       <div className="container modal__wrapper">
@@ -57,4 +57,10 @@ const ModalAdd = (props) => {
   );
 };
 
-export default ModalAdd;
+const mapStateToProps = ({ todos }) => ({ ...todos });
+
+const mapDispatchToProps = {
+  addTodo,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ModalAdd);

@@ -1,42 +1,53 @@
 import React from "react";
+import { connect } from "react-redux";
+import { removeTodo } from "../TodoList/TodoActions";
 
-const TodoItem = (props) => {
+const TodoItem = ({
+  item,
+  listState,
+  setListState,
+  setEditedTask,
+  setEditedId,
+  removeTodo,
+}) => {
   return (
     <li className="todo__item">
       <label className="todo__label">
         <span
           className="todo__span"
           onClick={() => {
-            if (props.listState === "edit") {
-              props.setListState("editTask");
-              props.setEditedId(props.item.id);
-              props.setEditedTask(props.item.title);
+            if (listState === "edit") {
+              setListState("editTask");
+              setEditedId(item.id);
+              setEditedTask(item.title);
             }
           }}
         >
-          {props.item.title}
+          {item.title}
         </span>
         <input type="checkbox" className="visually-hidden todo__check-input" />
         <span
           className={
             "todo__checkbox" +
-            (props.listState === "edit" || props.listState === "editTask"
-              ? " hidden"
-              : "")
+            (listState === "edit" || listState === "editTask" ? " hidden" : "")
           }
         ></span>
       </label>
       <button
         className={
           "todo__action" +
-          (props.listState === "edit" || props.listState === "editTask"
-            ? " show"
-            : "")
+          (listState === "edit" || listState === "editTask" ? " show" : "")
         }
-        onClick={() => props.removeTodo(props.item.id)}
+        onClick={() => removeTodo(item.id)}
       ></button>
     </li>
   );
 };
 
-export default TodoItem;
+const mapStateToProps = ({ todos }) => ({ ...todos });
+
+const mapDispatchToProps = {
+  removeTodo,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(TodoItem);
