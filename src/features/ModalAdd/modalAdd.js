@@ -19,7 +19,7 @@ const ModalAdd = ({ todosState, todosStateSet, addTodo }) => {
 
   return (
     <section
-      className={"modal modal--add" + (todosState === "add" ? " show" : "")}
+      className={"modal modal--add" + (todosState === "addTask" ? " show" : "")}
     >
       <h2 className="visually-hidden">Форма добавления задачи</h2>
       <div className="container modal__wrapper">

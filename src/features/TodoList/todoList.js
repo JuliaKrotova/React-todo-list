@@ -27,7 +27,7 @@ const TodoList = ({ todos, todosStateSet }) => {
         ))}
       </ul>
       <button
-        onClick={() => todosStateSet("add")}
+        onClick={() => todosStateSet("addTask")}
         className="button todo__button--add"
         aria-label="Добавить задачу"
       ></button>
