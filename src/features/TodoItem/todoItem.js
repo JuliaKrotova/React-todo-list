@@ -1,11 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
 import { removeTodo } from "../TodoList/TodoActions";
+import { todosStateSet } from "../TodoList/TodoActions";
 
 const TodoItem = ({
   item,
-  listState,
-  setListState,
+  todosState,
+  todosStateSet,
   setEditedTask,
   setEditedId,
   removeTodo,
@@ -16,8 +17,8 @@ const TodoItem = ({
         <span
           className="todo__span"
           onClick={() => {
-            if (listState === "edit") {
-              setListState("editTask");
+            if (todosState === "edit") {
+              todosStateSet("editTask");
               setEditedId(item.id);
               setEditedTask(item.title);
             }
@@ -29,25 +30,31 @@ const TodoItem = ({
         <span
           className={
             "todo__checkbox" +
-            (listState === "edit" || listState === "editTask" ? " hidden" : "")
+            (todosState === "edit" || todosState === "editTask"
+              ? " hidden"
+              : "")
           }
         ></span>
       </label>
       <button
         className={
           "todo__action" +
-          (listState === "edit" || listState === "editTask" ? " show" : "")
+          (todosState === "edit" || todosState === "editTask" ? " show" : "")
         }
-        onClick={() => removeTodo(item.id)}
+        onClick={() => {
+          removeTodo(item.id);
+          todosStateSet("edit");
+        }}
       ></button>
     </li>
   );
 };
 
-const mapStateToProps = ({ todos }) => ({ ...todos });
+const mapStateToProps = ({ todoList }) => ({ ...todoList });
 
 const mapDispatchToProps = {
   removeTodo,
+  todosStateSet,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(TodoItem);

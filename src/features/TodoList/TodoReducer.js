@@ -1,4 +1,4 @@
-import { TODO_ADD, TODO_REMOVE, TODO_EDIT } from "./types";
+import { TODO_ADD, TODO_REMOVE, TODO_EDIT, TODOS_STATE_SET } from "./types";
 
 const initialState = {
   todos: [
@@ -23,6 +23,7 @@ const initialState = {
       title: "Купить сыр",
     },
   ],
+  todosState: "show",
 };
 
 export const todoReducer = (state = initialState, action) => {
@@ -49,6 +50,11 @@ export const todoReducer = (state = initialState, action) => {
 
       return {
         todos: [...state.todos],
+      };
+    case TODOS_STATE_SET:
+      return {
+        ...state,
+        todosState: action.payload,
       };
     default:
       return state;

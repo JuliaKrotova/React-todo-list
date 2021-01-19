@@ -1,6 +1,8 @@
 import React from "react";
+import { connect } from "react-redux";
+import { todosStateSet } from "../TodoList/TodoActions";
 
-const Header = ({ listState, setListState }) => {
+const Header = ({ todosState, todosStateSet }) => {
   return (
     <header className="header">
       <div className="container header__wrapper">
@@ -8,18 +10,18 @@ const Header = ({ listState, setListState }) => {
         <button
           className={
             "button header__button-edit" +
-            (listState === "edit" ? " hidden" : "")
+            (todosState === "edit" ? " hidden" : "")
           }
-          onClick={() => setListState("edit")}
+          onClick={() => todosStateSet("edit")}
         >
           Править
         </button>
         <button
           className={
             "button header__button-cancel" +
-            (listState === "edit" ? " show" : "")
+            (todosState === "edit" ? " show" : "")
           }
-          onClick={() => setListState("show")}
+          onClick={() => todosStateSet("show")}
         >
           Отменить
         </button>
@@ -28,4 +30,10 @@ const Header = ({ listState, setListState }) => {
   );
 };
 
-export default Header;
+const mapStateToProps = ({ todoList }) => ({ ...todoList });
+
+const mapDispatchToProps = {
+  todosStateSet,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

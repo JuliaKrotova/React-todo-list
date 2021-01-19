@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { addTodo } from "../TodoList/TodoActions";
+import { todosStateSet } from "../TodoList/TodoActions";
 
-const ModalAdd = ({ listState, setListState, addTodo }) => {
+const ModalAdd = ({ todosState, todosStateSet, addTodo }) => {
   const [newTask, setNewTask] = useState("");
 
   const addTodoAndClose = (event) => {
@@ -12,13 +13,13 @@ const ModalAdd = ({ listState, setListState, addTodo }) => {
   };
 
   const closeModalAdd = () => {
-    setListState("show");
+    todosStateSet("show");
     setNewTask("");
   };
 
   return (
     <section
-      className={"modal modal--add" + (listState === "add" ? " show" : "")}
+      className={"modal modal--add" + (todosState === "add" ? " show" : "")}
     >
       <h2 className="visually-hidden">Форма добавления задачи</h2>
       <div className="container modal__wrapper">
@@ -57,10 +58,11 @@ const ModalAdd = ({ listState, setListState, addTodo }) => {
   );
 };
 
-const mapStateToProps = ({ todos }) => ({ ...todos });
+const mapStateToProps = ({ todoList }) => ({ ...todoList });
 
 const mapDispatchToProps = {
   addTodo,
+  todosStateSet,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ModalAdd);

@@ -1,12 +1,12 @@
 import React from "react";
 import TodoList from "../features/TodoList/todoList";
 
-const Home = ({ listState, setListState }) => {
+const Home = () => {
   return (
     <>
       <main>
         <div className="container">
-          <TodoList listState={listState} setListState={setListState} />
+          <TodoList />
         </div>
       </main>
     </>

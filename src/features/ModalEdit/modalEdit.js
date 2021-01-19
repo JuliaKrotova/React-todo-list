@@ -1,10 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
 import { editTodo } from "../TodoList/TodoActions";
+import { todosStateSet } from "../TodoList/TodoActions";
 
 const ModalEdit = ({
-  listState,
-  setListState,
+  todosState,
+  todosStateSet,
   editedTask,
   editedId,
   setEditedTask,
@@ -17,14 +18,14 @@ const ModalEdit = ({
   }
 
   const closeModalEdit = () => {
-    setListState("edit");
+    todosStateSet("edit");
     setEditedTask("");
   };
 
   return (
     <section
       className={
-        "modal modal--edit" + (listState === "editTask" ? " show" : "")
+        "modal modal--edit" + (todosState === "editTask" ? " show" : "")
       }
     >
       <h2 className="visually-hidden">Форма редактирования задачи</h2>
@@ -64,10 +65,11 @@ const ModalEdit = ({
   );
 };
 
-const mapStateToProps = ({ todos }) => ({ ...todos });
+const mapStateToProps = ({ todoList }) => ({ ...todoList });
 
 const mapDispatchToProps = {
   editTodo,
+  todosStateSet,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ModalEdit);
